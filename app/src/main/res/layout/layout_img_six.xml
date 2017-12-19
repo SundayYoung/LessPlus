@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="10dp">
+
+    <ImageView
+        android:id="@+id/iv_titlepage_one"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/music_img_height"
+        android:layout_marginRight="2dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/iv_titlepage_two" />
+
+    <TextView
+        android:id="@+id/tv_content_one"
+        style="@style/music_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_titlepage_one" />
+
+    <ImageView
+        android:id="@+id/iv_titlepage_two"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/music_img_height"
+        android:scaleType="centerCrop"
+        app:layout_constraintLeft_toRightOf="@+id/iv_titlepage_one"
+        app:layout_constraintRight_toLeftOf="@+id/iv_titlepage_three" />
+
+    <TextView
+        android:id="@+id/tv_content_two"
+        style="@style/music_content"
+        app:layout_constraintLeft_toLeftOf="@+id/iv_titlepage_two"
+        app:layout_constraintTop_toBottomOf="@+id/iv_titlepage_two" />
+
+    <ImageView
+        android:id="@+id/iv_titlepage_three"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/music_img_height"
+        android:layout_marginLeft="2dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintLeft_toRightOf="@+id/iv_titlepage_two"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_content_three"
+        style="@style/music_content"
+        app:layout_constraintLeft_toLeftOf="@+id/iv_titlepage_three"
+        app:layout_constraintTop_toBottomOf="@+id/iv_titlepage_three" />
+
+
+    <ImageView
+        android:id="@+id/iv_titlepage_four"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/music_img_height"
+        android:layout_marginRight="2dp"
+        android:layout_marginTop="10dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/iv_titlepage_five"
+        app:layout_constraintTop_toBottomOf="@+id/tv_content_one" />
+
+    <TextView
+        android:id="@+id/tv_content_four"
+        style="@style/music_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_titlepage_four" />
+
+    <ImageView
+        android:id="@+id/iv_titlepage_five"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/music_img_height"
+        android:scaleType="centerCrop"
+        app:layout_constraintLeft_toRightOf="@+id/iv_titlepage_four"
+        app:layout_constraintRight_toLeftOf="@+id/iv_titlepage_six"
+        app:layout_constraintTop_toTopOf="@+id/iv_titlepage_four" />
+
+    <TextView
+        android:id="@+id/tv_content_five"
+        style="@style/music_content"
+        app:layout_constraintLeft_toLeftOf="@+id/iv_titlepage_five"
+        app:layout_constraintTop_toBottomOf="@+id/iv_titlepage_five" />
+
+    <ImageView
+        android:id="@+id/iv_titlepage_six"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/music_img_height"
+        android:layout_marginLeft="2dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintLeft_toRightOf="@+id/iv_titlepage_five"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/iv_titlepage_four" />
+
+    <TextView
+        android:id="@+id/tv_content_six"
+        style="@style/music_content"
+        app:layout_constraintLeft_toLeftOf="@+id/iv_titlepage_six"
+        app:layout_constraintTop_toBottomOf="@+id/iv_titlepage_six" />
+
+
+</android.support.constraint.ConstraintLayout>
