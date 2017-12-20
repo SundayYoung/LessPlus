@@ -1,59 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
     <ImageView
         android:id="@+id/vIvHeadBg"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:scaleType="fitXY" />
+        android:layout_height="@dimen/music_head_img"
+        android:scaleType="fitXY"/>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin">
+    <ImageView
+        android:id="@+id/vIvCover"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginBottom="30dp"/>
 
-        <ImageView
-            android:id="@+id/iv_cover"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:scaleType="centerCrop" />
+    <TextView
+        android:id="@+id/vTvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:layout_constraintLeft_toRightOf="@+id/vIvCover"
+        app:layout_constraintTop_toTopOf="@+id/vIvCover" />
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="10dp"
-            android:orientation="vertical">
+    <TextView
+        android:id="@+id/vTvUpdateDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        app:layout_constraintLeft_toLeftOf="@+id/vTvTitle"
+        app:layout_constraintLeft_toRightOf="@+id/vIvCover"
+        app:layout_constraintTop_toBottomOf="@+id/vTvTitle" />
 
-            <TextView
-                android:id="@+id/tv_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="百度热歌榜"
-                android:textColor="@color/white"
-                android:textSize="18sp" />
+    <TextView
+        android:id="@+id/vTvComment"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        app:layout_constraintLeft_toLeftOf="@+id/vTvTitle"
+        app:layout_constraintLeft_toRightOf="@+id/vIvCover"
+        app:layout_constraintTop_toBottomOf="@+id/vTvUpdateDate"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginEnd="@dimen/activity_horizontal_margin"/>
 
-            <TextView
-                android:id="@+id/tv_update_date"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="最近更新：2016-01-03"
-                android:textColor="@color/white"
-                android:textSize="12sp" />
-
-            <TextView
-                android:id="@+id/tv_comment"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:text="该榜单是根据百度音乐平台歌曲每周播放量自动生成的数据榜单，统计范围为百度音乐平台上的全部歌曲，每日更新一次"
-                android:textColor="@color/white"
-                android:textSize="14sp" />
-        </LinearLayout>
-    </LinearLayout>
-</FrameLayout>
+</android.support.constraint.ConstraintLayout>

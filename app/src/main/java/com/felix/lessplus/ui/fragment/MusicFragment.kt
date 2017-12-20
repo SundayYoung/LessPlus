@@ -74,7 +74,7 @@ class MusicFragment : BaseFragment(), MusicMultiAdapter.OnItemImgClickListener {
      */
     override fun onImgClick(type: Int) {
         val intent = Intent(context, MusicListActivity::class.java)
-        intent.putExtra(CommonUtil.KEY_URL, type)
+        intent.putExtra(CommonUtil.KEY_TYPE, type)
         startActivity(intent)
     }
 }

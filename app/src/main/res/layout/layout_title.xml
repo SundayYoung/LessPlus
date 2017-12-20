@@ -10,12 +10,13 @@
 
     <ImageView
         android:layout_width="2dp"
-        android:layout_height="15dp"
+        android:layout_height="16dp"
         android:background="@drawable/shape_title_icon" />
 
     <TextView
         android:id="@+id/tv_title"
         style="@style/music_title"
-        android:layout_marginLeft="5dp" />
+        android:layout_marginLeft="5dp"
+        android:textSize="17sp"/>
 
 </LinearLayout>

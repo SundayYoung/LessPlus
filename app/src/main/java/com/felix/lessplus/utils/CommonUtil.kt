@@ -12,7 +12,7 @@ class CommonUtil {
     companion object {
 
 
-        val KEY_URL: String = "keyType"
+        val KEY_TYPE: String = "keyType"
 
 
         /**

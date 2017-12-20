@@ -5,6 +5,7 @@ import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
+import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -24,12 +25,18 @@ class RemoteModule {
     @Provides @Singleton fun provideOkHttpClient(): OkHttpClient =
             OkHttpClient.Builder()
                     .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
-                    .build()
+                    .addInterceptor { chain ->
+                        val newRequest = chain.request().newBuilder()
+                                .removeHeader("User-Agent")
+                                .addHeader("User-Agent", "Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:0.9.4)")
+                                .build()
+                        chain.proceed(newRequest)
+                    }.build()
 
 
     @Provides @Singleton fun provideRetrofit(gson: Gson, okHttpClient: OkHttpClient): Retrofit =
             Retrofit.Builder()
-                    .baseUrl("https://www.gethub.com")
+                    .baseUrl("http://hiyoung.com")
                     .addConverterFactory(GsonConverterFactory.create(gson))
 //                    .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                     .client(okHttpClient)

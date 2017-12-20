@@ -32,7 +32,7 @@
         <ImageView
             android:id="@+id/vIvTitleBg"
             android:layout_width="match_parent"
-            android:layout_height="250dp"
+            android:layout_height="@dimen/music_head_img"
             android:scaleType="fitXY"
             android:visibility="gone" />
 
@@ -47,5 +47,11 @@
 
     </RelativeLayout>
 
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"/>
 
 </FrameLayout>

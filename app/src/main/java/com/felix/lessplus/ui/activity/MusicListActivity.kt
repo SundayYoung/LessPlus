@@ -1,49 +1,76 @@
 package com.felix.lessplus.ui.activity
 
-import android.graphics.Color
+import android.arch.lifecycle.Observer
+import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v4.widget.NestedScrollView
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.felix.lessplus.R
+import com.felix.lessplus.model.bean.MusicListResponse
+import com.felix.lessplus.utils.CommonUtil
 import com.felix.lessplus.utils.GlideImageLoader
 import com.felix.lessplus.utils.StatusBarUtil
 import com.felix.lessplus.utils.StatusBarUtil.Companion.getStatusBarHeight
+import com.felix.lessplus.viewmodel.MusicViewModel
 import kotlinx.android.synthetic.main.activity_music_list.*
 import kotlinx.android.synthetic.main.layout_music_list_head.*
+import org.jetbrains.anko.toast
 import java.util.ArrayList
 
 class MusicListActivity : BaseActivity(), NestedScrollView.OnScrollChangeListener {
 
+    private var mMusicViewModel: MusicViewModel? = null
     private var mAdapter: ListAdapter? = null
+
     private var slidingDistance: Int = 0
     //高斯图背景的高度
     private var imageBgHeight: Int = 0
-
-    private var mImgUrl: String = "http://a.hiphotos.baidu.com/ting/pic/item/09fa513d269759ee4764e3adb1fb43166d22dfa4.jpg"
+    //music type
+    private var mType: Int = 0
+    //music list page
+    private var mOffSet: Int = 0
 
     override fun setContentLayout(): Int = R.layout.activity_music_list
 
     override fun initData(bundle: Bundle?) {
-        setTItelBar()
+        setTitleBar()
+
+        mType = intent.getIntExtra(CommonUtil.KEY_TYPE, 2)
+        mMusicViewModel = ViewModelProviders.of(this).get(MusicViewModel::class.java)
 
         mAdapter = ListAdapter()
-        val list = ArrayList<String>()
-        for (i in 0..49) {
-            list.add("AAA")
-        }
+        mAdapter?.openLoadAnimation()
+        mAdapter?.openLoadAnimation(BaseQuickAdapter.SLIDEIN_BOTTOM)
         vRlmusic.isNestedScrollingEnabled = false
         vRlmusic.setHasFixedSize(false)
         vRlmusic.isFocusable = false
         vRlmusic.layoutManager = LinearLayoutManager(this)
         vRlmusic.adapter = mAdapter
-        mAdapter!!.setNewData(list)
+        mAdapter?.setEnableLoadMore(true)
+//        mAdapter?.setOnLoadMoreListener({ loadMore() }, vRlmusic)
 
         initSlideShapeTheme()
+
+        loadMusicList()
+    }
+
+    private fun loadMusicList() {
+        mMusicViewModel?.loadMusicList(mType, mOffSet)?.observe(this, Observer { musicData ->
+            progressBar.visibility = View.GONE
+            setHeadData(musicData?.billboard)
+            mAdapter!!.setNewData(musicData?.song_list)
+            mAdapter!!.setOnItemChildClickListener { _, _, position ->
+                toast("Play" + position)
+            }
+        })
+    }
+
+    private fun loadMore() {
+        toast("More")
     }
 
     /**
@@ -53,7 +80,7 @@ class MusicListActivity : BaseActivity(), NestedScrollView.OnScrollChangeListene
         scrollChangeHeader(scrollY)
     }
 
-    private fun setTItelBar() {
+    private fun setTitleBar() {
         setSupportActionBar(vToolBar)
         val actionBar = supportActionBar
         actionBar?.setDisplayShowTitleEnabled(false)
@@ -61,12 +88,20 @@ class MusicListActivity : BaseActivity(), NestedScrollView.OnScrollChangeListene
         vToolBar.setNavigationOnClickListener { onBackPressed() }
     }
 
+    private fun setHeadData(headData: MusicListResponse.BillBoardData?) {
+        vToolBar.title = headData?.name
+        vTvTitle.text = getString(R.string.music_head_title, headData?.name)
+        vTvUpdateDate.text = getString(R.string.music_head_updateDate, headData?.update_date)
+        vTvComment.text = headData?.comment
+        GlideImageLoader.displayImage(this, headData?.pic_s192!!, vIvCover)
+        GlideImageLoader.displayImageWithBlur(this, headData.pic_s640!!, vIvHeadBg)
+        GlideImageLoader.displayImageWithBlur(this, headData.pic_s640!!, vIvTitleBg)
+    }
+
     /**
      * 初始化滑动渐变
      */
     private fun initSlideShapeTheme() {
-        GlideImageLoader.displayImageWithBlur(this, mImgUrl, vIvHeadBg)
-        GlideImageLoader.displayImageWithBlur(this, mImgUrl, vIvTitleBg)
 
         // toolbar的高度
         val toolbarHeight = vToolBar.layoutParams.height
@@ -117,10 +152,13 @@ class MusicListActivity : BaseActivity(), NestedScrollView.OnScrollChangeListene
         }
     }
 
-    inner class ListAdapter : BaseQuickAdapter<String, BaseViewHolder>(R.layout.item_music_list) {
+    inner class ListAdapter : BaseQuickAdapter<MusicListResponse.MusicData, BaseViewHolder>(R.layout.item_music_list) {
 
-        override fun convert(helper: BaseViewHolder, item: String) {
-            helper.setText(R.id.tv_title, item)
+        override fun convert(helper: BaseViewHolder, item: MusicListResponse.MusicData) {
+            GlideImageLoader.displayImage(this@MusicListActivity, item.pic_big, helper.getView(R.id.iv_cover))
+            helper.setText(R.id.tv_title, item.title)
+            helper.setText(R.id.tv_artist, getString(R.string.music_list_title_album, item.author, item.album_title))
+            helper.addOnClickListener(R.id.iv_more)
         }
     }
 

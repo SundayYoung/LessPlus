@@ -3,6 +3,7 @@ package com.felix.lessplus.data.repository
 import android.arch.lifecycle.LiveData
 import com.felix.lessplus.data.remote.MusicRemoteData
 import com.felix.lessplus.model.bean.BannerResponse
+import com.felix.lessplus.model.bean.MusicListResponse
 import com.felix.lessplus.model.bean.MusicResponse
 import javax.inject.Inject
 
@@ -18,5 +19,9 @@ class MusicRepository @Inject constructor(private val remoteData: MusicRemoteDat
 
     fun getMusicAlbum(): LiveData<List<MusicResponse>> {
         return remoteData.loadMusicAlbum()
+    }
+
+    fun getMusicList(type: Int, offset: Int): LiveData<MusicListResponse> {
+        return remoteData.loadMusicList(type, offset)
     }
 }
