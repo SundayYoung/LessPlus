@@ -1,49 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<com.sothree.slidinguppanel.SlidingUpPanelLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:sothree="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/vSlidingLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.felix.lessplus.ui.activity.MainActivity">
+    android:gravity="bottom"
+    sothree:umanoPanelHeight="@dimen/bottom_play_bar_height"
+    sothree:umanoShadowHeight="4dp">
 
-    <android.support.design.widget.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
-
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:layout_scrollFlags="scroll|enterAlways"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
-
-        <android.support.design.widget.TabLayout
-            android:id="@+id/tbHome"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            app:tabBackground="@color/colorPrimary"
-            app:tabIndicatorColor="@color/white"
-            app:tabMode="fixed"
-            app:tabSelectedTextColor="@color/white"
-            app:tabTextColor="@color/tran_white_60" />
-
-    </android.support.design.widget.AppBarLayout>
-
-
-    <android.support.v4.view.ViewPager
-        android:id="@+id/vpHome"
+    <android.support.design.widget.CoordinatorLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+        tools:context="com.felix.lessplus.ui.activity.MainActivity">
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@android:drawable/ic_dialog_email" />
+        <android.support.design.widget.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/AppTheme.AppBarOverlay">
 
-</android.support.design.widget.CoordinatorLayout>
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="?attr/colorPrimary"
+                app:layout_scrollFlags="scroll|enterAlwaysCollapsed|snap"
+                app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+            <android.support.design.widget.TabLayout
+                android:id="@+id/tbHome"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                app:tabBackground="@color/colorPrimary"
+                app:tabIndicatorColor="@color/white"
+                app:tabMode="fixed"
+                app:tabSelectedTextColor="@color/white"
+                app:tabTextColor="@color/tran_white_60" />
+
+        </android.support.design.widget.AppBarLayout>
+
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/vpHome"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+        <!--<android.support.design.widget.FloatingActionButton-->
+        <!--android:id="@+id/fab"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_gravity="bottom|end"-->
+        <!--android:layout_margin="@dimen/fab_margin"-->
+        <!--app:srcCompat="@android:drawable/ic_dialog_email" />-->
+
+    </android.support.design.widget.CoordinatorLayout>
+
+    <include layout="@layout/include_play_bar"/>
+
+</com.sothree.slidinguppanel.SlidingUpPanelLayout>

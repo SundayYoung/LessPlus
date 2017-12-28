@@ -5,6 +5,7 @@ import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import com.felix.lessplus.data.repository.MusicRepository
 import com.felix.lessplus.model.bean.BannerResponse
+import com.felix.lessplus.model.bean.MusicDownLoadInfo
 import com.felix.lessplus.model.bean.MusicListResponse
 import com.felix.lessplus.model.bean.MusicResponse
 import com.felix.lessplus.ui.LessPlusApplication
@@ -20,6 +21,8 @@ class MusicViewModel : ViewModel() {
     private var mBannerData: LiveData<List<BannerResponse>>? = null
     private var mMusicAlbumData: LiveData<List<MusicResponse>>? = null
     private var mMusicListData: LiveData<MusicListResponse>? = null
+
+    private var mMusicDownInfoData: LiveData<MusicDownLoadInfo>? = null
 
     init {
         LessPlusApplication.mAppComponent.inject(this)
@@ -45,6 +48,13 @@ class MusicViewModel : ViewModel() {
         mMusicListData = MutableLiveData<MusicListResponse>()
         mMusicListData = mMusicRepository.getMusicList(type, offset)
         return mMusicListData
+    }
+
+    fun loadMusicDownLoadInfo(songId: String?): LiveData<MusicDownLoadInfo>? {
+        mMusicDownInfoData = null
+        mMusicDownInfoData = MutableLiveData<MusicDownLoadInfo>()
+        mMusicDownInfoData = mMusicRepository.getMusicDownLoadInfo(songId)
+        return mMusicDownInfoData
     }
 
 }

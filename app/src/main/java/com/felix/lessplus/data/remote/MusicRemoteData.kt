@@ -7,8 +7,10 @@ import com.felix.lessplus.http.RestBaseCallBack
 import com.felix.lessplus.http.RestService
 import com.felix.lessplus.http.UrlConfig
 import com.felix.lessplus.model.bean.BannerResponse
+import com.felix.lessplus.model.bean.MusicDownLoadInfo
 import com.felix.lessplus.model.bean.MusicListResponse
 import com.felix.lessplus.model.bean.MusicResponse
+import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -64,5 +66,32 @@ class MusicRemoteData @Inject constructor(private val restService: RestService) 
         })
 
         return mutableLiveData
+    }
+
+    fun loadMusicDownLoadInfo(songId: String?): LiveData<MusicDownLoadInfo> {
+        val mutableLiveData = MutableLiveData<MusicDownLoadInfo>()
+        val mCall: Call<MusicDownLoadInfo>? = restService.loadMusicDownLoadInfo(UrlConfig.MUSIC_PLAY, songId)
+        mCall?.enqueue(object : Callback<MusicDownLoadInfo> {
+
+            override fun onResponse(call: Call<MusicDownLoadInfo>?, response: Response<MusicDownLoadInfo>?) {
+                mutableLiveData.value = response?.body()
+            }
+
+            override fun onFailure(call: Call<MusicDownLoadInfo>?, t: Throwable?) {
+            }
+        })
+
+        return mutableLiveData
+    }
+
+    fun loadMusicDownLoadInfo(songId: String?, callback: Callback<MusicDownLoadInfo>) {
+        val mCall: Call<MusicDownLoadInfo>? = restService.loadMusicDownLoadInfo(UrlConfig.MUSIC_PLAY, songId)
+        mCall?.enqueue(callback)
+    }
+
+
+    fun downLoadInfo(url: String?, callback: Callback<ResponseBody>) {
+        val mCall: Call<ResponseBody>? = restService.downLoadData(url!!)
+        mCall?.enqueue(callback)
     }
 }

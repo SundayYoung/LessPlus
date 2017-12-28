@@ -6,16 +6,7 @@ package com.felix.lessplus.model.bean
 class MusicListResponse {
 
     var billboard: BillBoardData? = null
-    var song_list: List<MusicData>? = null
-
-    inner class MusicData {
-        var pic_big: String? = null
-        var pic_small: String? = null
-        var lrclink: String? = null
-        var title: String? = null
-        var author:String? = null
-        var album_title: String? = null
-    }
+    var song_list: List<OnLineMusic>? = null
 
     inner class BillBoardData {
         var billboard_type: String? = null

@@ -6,6 +6,7 @@
 
     <color name="gray_9e">#9E9E9E</color>
     <color name="white">@android:color/white</color>
+    <color name="white_24p">#3DFFFFFF</color>
     <color name="black">@android:color/black</color>
     <color name="black_10">#101010</color>
 

@@ -4,6 +4,8 @@ import android.app.Activity
 import android.content.Context
 import android.graphics.Color
 import android.os.Build
+import android.support.v4.content.ContextCompat
+import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
@@ -16,6 +18,26 @@ import com.felix.lessplus.ui.customview.StatusBarView
 class StatusBarUtil {
 
     companion object {
+
+        fun setStatusBarColor(activity: Activity, colorResId: Int, isChangeIconColor: Boolean) {
+            try {
+                val window = activity.window
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+                    window.statusBarColor = colorResId
+
+                    //底部导航栏
+                    //window.setNavigationBarColor(activity.getResources().getColor(colorResId));
+                }
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && isChangeIconColor) {
+                    window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+                }
+            } catch (e: Exception) {
+                Log.e("StatusBar", e.message)
+            }
+
+        }
+
         /**
          * 获取状态栏高度
          *

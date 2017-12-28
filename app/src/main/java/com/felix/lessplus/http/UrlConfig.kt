@@ -7,6 +7,7 @@ class UrlConfig {
 
     companion object {
         var MUSIC_BASE: String = "http://tingapi.ting.baidu.com/v1/restserver/ting?method=baidu.ting.billboard.billList"
+        var MUSIC_PLAY: String = "http://tingapi.ting.baidu.com/v1/restserver/ting?method=baidu.ting.song.play&songid="
         var BANNER: String = "http://5a2a624532152c0012fb9328.mockapi.io/api/bannerList"
         var MUSIC_ALBUM: String = "http://5a2a624532152c0012fb9328.mockapi.io/api/homeMusic"
     }

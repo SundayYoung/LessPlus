@@ -12,5 +12,6 @@
     <dimen name="nav_bar_height_more">30dp</dimen>
 
     <dimen name="divider_height">0.33dp</dimen>
+    <dimen name="bottom_play_bar_height">60dp</dimen>
 
 </resources>

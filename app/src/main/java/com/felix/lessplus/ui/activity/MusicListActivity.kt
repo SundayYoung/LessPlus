@@ -9,8 +9,13 @@ import android.view.View
 import android.view.ViewGroup
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
+import com.felix.lessplus.executor.PlayOnlineMusic
 import com.felix.lessplus.R
+import com.felix.lessplus.model.bean.Music
 import com.felix.lessplus.model.bean.MusicListResponse
+import com.felix.lessplus.model.bean.OnLineMusic
+import com.felix.lessplus.service.PlayCache
+import com.felix.lessplus.service.PlayService
 import com.felix.lessplus.utils.CommonUtil
 import com.felix.lessplus.utils.GlideImageLoader
 import com.felix.lessplus.utils.StatusBarUtil
@@ -19,7 +24,6 @@ import com.felix.lessplus.viewmodel.MusicViewModel
 import kotlinx.android.synthetic.main.activity_music_list.*
 import kotlinx.android.synthetic.main.layout_music_list_head.*
 import org.jetbrains.anko.toast
-import java.util.ArrayList
 
 class MusicListActivity : BaseActivity(), NestedScrollView.OnScrollChangeListener {
 
@@ -59,18 +63,17 @@ class MusicListActivity : BaseActivity(), NestedScrollView.OnScrollChangeListene
     }
 
     private fun loadMusicList() {
-        mMusicViewModel?.loadMusicList(mType, mOffSet)?.observe(this, Observer { musicData ->
+        mMusicViewModel?.loadMusicList(mType, mOffSet)?.observe(this@MusicListActivity, Observer { musicData ->
             progressBar.visibility = View.GONE
             setHeadData(musicData?.billboard)
             mAdapter!!.setNewData(musicData?.song_list)
             mAdapter!!.setOnItemChildClickListener { _, _, position ->
                 toast("Play" + position)
             }
+            mAdapter!!.setOnItemClickListener({ _, _, position ->
+                play(mAdapter?.getItem(position)!!)
+            })
         })
-    }
-
-    private fun loadMore() {
-        toast("More")
     }
 
     /**
@@ -152,9 +155,30 @@ class MusicListActivity : BaseActivity(), NestedScrollView.OnScrollChangeListene
         }
     }
 
-    inner class ListAdapter : BaseQuickAdapter<MusicListResponse.MusicData, BaseViewHolder>(R.layout.item_music_list) {
 
-        override fun convert(helper: BaseViewHolder, item: MusicListResponse.MusicData) {
+    private fun play(onlineMusic: OnLineMusic) {
+        object : PlayOnlineMusic(this, onlineMusic) {
+
+            override fun onPrepare() {
+            }
+
+            override fun onExecuteSuccess(music: Music?) {
+                PlayCache.instance.mPlayService?.play(music!!)
+                println("oncLLLL " + PlayCache.instance.mPlayService)
+
+                toast("播放")
+            }
+
+            override fun onExecuteFail(e: Exception) {
+                toast("失败")
+            }
+        }.execute()
+    }
+
+
+    inner class ListAdapter : BaseQuickAdapter<OnLineMusic, BaseViewHolder>(R.layout.item_music_list) {
+
+        override fun convert(helper: BaseViewHolder, item: OnLineMusic) {
             GlideImageLoader.displayImage(this@MusicListActivity, item.pic_big, helper.getView(R.id.iv_cover))
             helper.setText(R.id.tv_title, item.title)
             helper.setText(R.id.tv_artist, getString(R.string.music_list_title_album, item.author, item.album_title))
