@@ -7,10 +7,23 @@ import com.felix.lessplus.http.BaseServerResponse
  * banner bean
  */
 class BannerResponse : BaseServerResponse() {
-    var randpic: String? = null
-    var mo_type: Int = 0
-    var type: Int = 0
-    var is_publish: String? = null
-    var randpic_iphone6: String? = null
-    var randpic_desc: String? = null
+
+    var result: ResultBean? = null
+
+    inner class ResultBean {
+
+        var focus: FocusBean? = null
+
+        inner class FocusBean {
+            var error_code: Int = 0
+            var result: List<ResultBeanX>? = null
+
+            inner class ResultBeanX {
+                var randpic: String? = null
+                var code: String? = null
+                var type: Int = 0
+            }
+        }
+    }
+
 }

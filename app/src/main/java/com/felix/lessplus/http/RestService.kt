@@ -1,6 +1,7 @@
 package com.felix.lessplus.http
 
 
+import com.felix.lessplus.model.bean.BannerResponse
 import com.felix.lessplus.model.bean.MusicDownLoadInfo
 import com.felix.lessplus.model.bean.MusicListResponse
 import okhttp3.ResponseBody
@@ -17,6 +18,9 @@ interface RestService {
 
     @GET
     fun downLoadData(@Url url: String): Call<ResponseBody>
+
+    @GET
+    fun loadBanner(@Url url: String): Call<BannerResponse>
 
     @GET
     fun loadOffSetMusic(@Url url: String, @Query("type") type: Int, @Query("size") size: Int, @Query("offset") offset: Int): Call<MusicListResponse>

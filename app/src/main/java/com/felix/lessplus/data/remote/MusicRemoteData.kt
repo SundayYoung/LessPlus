@@ -21,16 +21,25 @@ import javax.inject.Inject
  */
 class MusicRemoteData @Inject constructor(private val restService: RestService) {
 
-    fun loadBanner(): LiveData<List<BannerResponse>> {
-        val mutableLiveData = MutableLiveData<List<BannerResponse>>()
-        val mCall: Call<BaseServerResponse>? = restService.loadData(UrlConfig.BANNER)
-        mCall?.enqueue(object : RestBaseCallBack<List<BannerResponse>>() {
-            override fun onResponse(data: List<BannerResponse>?) {
-                mutableLiveData.value = data
+    fun loadBanner(): LiveData<BannerResponse> {
+        val mutableLiveData = MutableLiveData<BannerResponse>()
+        val mCall: Call<BannerResponse>? = restService.loadBanner(UrlConfig.BANNER)
+//        mCall?.enqueue(object : RestBaseCallBack<List<BannerResponse>>() {
+//            override fun onResponse(data: List<BannerResponse>?) {
+//                mutableLiveData.value = data
+//            }
+//
+//            override fun onFailure(error: Throwable?, code: Int, msg: String) {
+//
+//            }
+//        })
+        mCall?.enqueue(object : Callback<BannerResponse> {
+
+            override fun onResponse(call: Call<BannerResponse>?, response: Response<BannerResponse>?) {
+                mutableLiveData.value = response?.body()
             }
 
-            override fun onFailure(error: Throwable?, code: Int, msg: String) {
-
+            override fun onFailure(call: Call<BannerResponse>?, t: Throwable?) {
             }
         })
         return mutableLiveData

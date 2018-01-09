@@ -35,7 +35,7 @@ class MusicFragment : BaseFragment(), MusicMultiAdapter.OnItemImgClickListener {
         loadMusicAlbum()
     }
 
-    fun initRv() {
+    private fun initRv() {
         mAdapter = MusicMultiAdapter(mContext!!)
         mAdapter!!.addListener(this)
         val mHeadView = View.inflate(mContext, R.layout.view_head_banner, null)
@@ -51,9 +51,12 @@ class MusicFragment : BaseFragment(), MusicMultiAdapter.OnItemImgClickListener {
     private fun loadBanner() {
         mMusicViewModel?.loadBanner()?.observe(this, Observer { bannerData ->
             val mImages = ArrayList<String>()
-            for (res in bannerData!!) {
-                res.randpic?.let { mImages.add(it) }
+            if (bannerData?.result != null && bannerData.result?.focus != null && bannerData.result?.focus?.result != null) {
+                for (res in bannerData.result!!.focus!!.result!!) {
+                    res.randpic?.let { mImages.add(it) }
+                }
             }
+
             mBanner!!.setImages(mImages).setImageLoader(GlideImageLoader()).start()
         })
     }

@@ -18,7 +18,7 @@ class MusicViewModel : ViewModel() {
 
     @Inject lateinit var mMusicRepository: MusicRepository
 
-    private var mBannerData: LiveData<List<BannerResponse>>? = null
+    private var mBannerData: LiveData<BannerResponse>? = null
     private var mMusicAlbumData: LiveData<List<MusicResponse>>? = null
     private var mMusicListData: LiveData<MusicListResponse>? = null
 
@@ -29,9 +29,9 @@ class MusicViewModel : ViewModel() {
     }
 
 
-    fun loadBanner(): LiveData<List<BannerResponse>>? {
+    fun loadBanner(): LiveData<BannerResponse>? {
         mBannerData = null
-        mBannerData = MutableLiveData<List<BannerResponse>>()
+        mBannerData = MutableLiveData<BannerResponse>()
         mBannerData = mMusicRepository.getBanner()
         return mBannerData
     }

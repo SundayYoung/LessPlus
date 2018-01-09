@@ -14,7 +14,7 @@ import javax.inject.Inject
  */
 class MusicRepository @Inject constructor(private val remoteData: MusicRemoteData) {
 
-    fun getBanner(): LiveData<List<BannerResponse>> {
+    fun getBanner(): LiveData<BannerResponse> {
         return remoteData.loadBanner()
     }
 

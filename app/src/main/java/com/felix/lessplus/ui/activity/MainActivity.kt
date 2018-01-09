@@ -42,8 +42,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     private var mFragments: ArrayList<Fragment>? = null
 
     private var mSlideOffSet: Float = 0f
-    private var mStatusBarColor: Int = 0
-    private var mPlayColor: Int = R.color.colorPrimary
+    private var mPlayColor: Int = 0
 
     private var mLastProgress: Int = 0
 
@@ -124,13 +123,13 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
 
             override fun onPanelStateChanged(panel: View, previousState: SlidingUpPanelLayout.PanelState, newState: SlidingUpPanelLayout.PanelState) {
                 // || mSlideOffSet == 1.0f
-                if (newState == SlidingUpPanelLayout.PanelState.EXPANDED) {
-                    drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
-                    StatusBarUtil.setStatusBarColor(this@MainActivity, mStatusBarColor, false)
-                } else {
-                    StatusBarUtil.setStatusBarColor(this@MainActivity, ContextCompat.getColor(this@MainActivity, R.color.colorPrimaryDark), false)
-                    drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
-                }
+//                if (newState == SlidingUpPanelLayout.PanelState.EXPANDED) {
+//                    drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
+//                    StatusBarUtil.setStatusBarColor(this@MainActivity, mPlayColor, false)
+//                } else {
+//                    StatusBarUtil.setStatusBarColor(this@MainActivity, ContextCompat.getColor(this@MainActivity, R.color.colorPrimaryDark), false)
+//                    drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
+//                }
             }
         })
 
@@ -172,10 +171,8 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     private fun setPaletteStatusBarColor(bitmap: Bitmap) {
         Palette.from(bitmap).generate { palette: Palette ->
             val vDark: Palette.Swatch? = palette.darkVibrantSwatch
-            mStatusBarColor = vDark?.rgb ?: 0
-
-            val vLight: Palette.Swatch? = palette.lightVibrantSwatch
-            mPlayColor = vLight?.rgb ?: ContextCompat.getColor(this, R.color.colorPrimary)
+            mPlayColor = vDark?.rgb ?: ContextCompat.getColor(this, R.color.colorPrimary)
+            setPlayDrawableColor()
         }
     }
 
@@ -271,8 +268,6 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
 
         vSbProgress.max = music.duration.toInt()
         vTvTotalTime.text = CommonUtil.formatTime(music.duration)
-        setPlayDrawableColor()
-
 
     }
 
@@ -281,9 +276,9 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         val mDrawable = GradientDrawable()
         mDrawable.shape = GradientDrawable.OVAL
         mDrawable.useLevel = false
-        mDrawable.setColor(mStatusBarColor)
+        mDrawable.setColor(mPlayColor)
 
-        vIvFramePlayBg.setColor(mStatusBarColor)
+        vIvFramePlayBg.setColor(mPlayColor)
         vIvPrev.background = mDrawable
         vIvNext.background = mDrawable
 
