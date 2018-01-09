@@ -1,5 +1,6 @@
 package com.felix.lessplus.ui.activity
 
+import android.Manifest
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
@@ -18,6 +19,7 @@ import com.felix.lessplus.service.PlayCache
 import com.felix.lessplus.service.PlayService
 import com.felix.lessplus.utils.CommonUtil
 import com.felix.lessplus.utils.GlideImageLoader
+import com.felix.lessplus.utils.PermissionsUtil
 import com.felix.lessplus.utils.StatusBarUtil
 import com.felix.lessplus.utils.StatusBarUtil.Companion.getStatusBarHeight
 import com.felix.lessplus.viewmodel.MusicViewModel
@@ -71,7 +73,7 @@ class MusicListActivity : BaseActivity(), NestedScrollView.OnScrollChangeListene
                 toast("Play" + position)
             }
             mAdapter!!.setOnItemClickListener({ _, _, position ->
-                play(mAdapter?.getItem(position)!!)
+                requestPermission(position)
             })
         })
     }
@@ -155,6 +157,17 @@ class MusicListActivity : BaseActivity(), NestedScrollView.OnScrollChangeListene
         }
     }
 
+    private fun requestPermission(position: Int) {
+        PermissionsUtil.with(this).addPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE).setCallback(object : PermissionsUtil.Callback {
+            override fun onPermissionGranted(permissions: Array<String?>) {
+                play(mAdapter?.getItem(position)!!)
+            }
+
+            override fun onPermissionDenied(permissions: Array<String>) {
+                toast("拒绝将无法播放！")
+            }
+        }).request()
+    }
 
     private fun play(onlineMusic: OnLineMusic) {
         object : PlayOnlineMusic(this, onlineMusic) {
@@ -164,7 +177,6 @@ class MusicListActivity : BaseActivity(), NestedScrollView.OnScrollChangeListene
 
             override fun onExecuteSuccess(music: Music?) {
                 PlayCache.instance.mPlayService?.play(music!!)
-                println("oncLLLL " + PlayCache.instance.mPlayService)
 
                 toast("播放")
             }
@@ -174,7 +186,6 @@ class MusicListActivity : BaseActivity(), NestedScrollView.OnScrollChangeListene
             }
         }.execute()
     }
-
 
     inner class ListAdapter : BaseQuickAdapter<OnLineMusic, BaseViewHolder>(R.layout.item_music_list) {
 

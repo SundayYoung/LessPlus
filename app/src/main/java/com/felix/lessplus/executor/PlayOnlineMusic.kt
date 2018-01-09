@@ -84,8 +84,11 @@ abstract class PlayOnlineMusic(mActivity: Activity, private val mOnlineMusic: On
 
             override fun onResponse(call: Call<MusicDownLoadInfo>?, response: Response<MusicDownLoadInfo>?) {
                 val data = response?.body()
-                mMusic?.path = data?.bitrate?.file_link
-                mMusic?.duration = (data?.bitrate?.file_duration!! * 1000).toLong()
+                if (data?.bitrate == null) {
+                    return
+                }
+                mMusic?.path = data.bitrate?.file_link
+                mMusic?.duration = (data.bitrate?.file_duration!! * 1000).toLong()
                 checkCounter()
             }
 
@@ -110,7 +113,6 @@ abstract class PlayOnlineMusic(mActivity: Activity, private val mOnlineMusic: On
         })
     }
 
-    //TODO 权限申请
     private fun downloadAlbum(picUrl: String?, fileName: String) {
         mRemoteData.downLoadInfo(picUrl, object : Callback<ResponseBody> {
 

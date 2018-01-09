@@ -37,7 +37,7 @@ interface OnPlayerEventListener {
     /**
      * 更新定时停止播放时间
      */
-    fun onTimer(remain: Long)
-
-    fun onMusicListUpdate()
+//    fun onTimer(remain: Long)
+//
+//    fun onMusicListUpdate()
 }

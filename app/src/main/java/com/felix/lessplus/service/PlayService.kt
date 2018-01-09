@@ -30,13 +30,11 @@ class PlayService : Service(), MediaPlayer.OnCompletionListener {
     private var mAudioFocusManager: AudioFocusManager? = null
     private var mMediaSessionManager: MediaSessionManager? = null
     var onPlayEventListener: OnPlayerEventListener? = null
-    // 正在播放的歌曲[本地|网络]
     /**
      * 获取正在播放的歌曲[本地|网络]
      */
     var playingMusic: Music? = null
         private set
-    // 正在播放的本地歌曲的序号
     /**
      * 获取正在播放的本地歌曲的序号
      */
@@ -94,11 +92,11 @@ class PlayService : Service(), MediaPlayer.OnCompletionListener {
         mMediaSessionManager = MediaSessionManager(this)
         mPlayer!!.setOnCompletionListener(this)
 //        Notifier.init(this)
-        QuitTimer.instance.init(this, mHandler, EventCallback<Long> { aLong ->
-            if (onPlayEventListener != null) {
-                onPlayEventListener!!.onTimer(aLong!!)
-            }
-        })
+//        QuitTimer.instance.init(this, mHandler, EventCallback<Long> { aLong ->
+//            if (onPlayEventListener != null) {
+//                onPlayEventListener!!.onTimer(aLong!!)
+//            }
+//        })
     }
 
     override fun onBind(intent: Intent): IBinder? {
@@ -314,7 +312,7 @@ class PlayService : Service(), MediaPlayer.OnCompletionListener {
         mMediaSessionManager!!.release()
         PlayCache.instance.mPlayService = null
         super.onDestroy()
-        Log.i(TAG, "onDestroy: " + javaClass.simpleName)
+        Log.i(TAG, "llllonDestroy: " + javaClass.simpleName)
     }
 
     fun quit() {

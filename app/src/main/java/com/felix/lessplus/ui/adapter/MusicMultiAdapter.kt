@@ -168,7 +168,7 @@ class MusicMultiAdapter constructor(private val mContext: Context) : RecyclerVie
     }
 
 
-    fun getRealPosition(position: Int): Int {
+    private fun getRealPosition(position: Int): Int {
         return if (mHeaderView == null) position else position - 1
     }
 

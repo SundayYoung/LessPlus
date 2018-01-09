@@ -1,9 +1,11 @@
 package com.felix.lessplus.utils
 
 import android.content.Context
+import android.graphics.Bitmap
 import android.widget.ImageView
 
 import com.bumptech.glide.Glide
+import com.bumptech.glide.RequestBuilder
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.felix.lessplus.di.module.GlideApp
 import com.felix.lessplus.di.module.GlideOptions.bitmapTransform
@@ -39,6 +41,11 @@ class GlideImageLoader : ImageLoader() {
                     .apply(bitmapTransform( BlurTransformation(30, 6)))
                     .into(imageView)
 
+        }
+
+        fun callBackBitmap(context: Context, url: String?): RequestBuilder<Bitmap> {
+
+            return Glide.with(context).asBitmap().load(url)
         }
     }
 }

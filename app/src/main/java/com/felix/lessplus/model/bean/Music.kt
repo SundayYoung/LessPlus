@@ -29,6 +29,7 @@ class Music : Serializable {
     var fileName: String? = null
     // 文件大小
     var fileSize: Long = 0
+    var albumImg_500_500: String? = null
 
     enum class Type {
         LOCAL,

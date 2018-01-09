@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="CirclePlayView">
+        <attr name="playColor" format="color" />
+        <attr name="playSize" format="dimension" />
+    </declare-styleable>
+
+</resources>
