@@ -16,7 +16,6 @@ import com.felix.lessplus.model.bean.Music
 import com.felix.lessplus.model.bean.MusicListResponse
 import com.felix.lessplus.model.bean.OnLineMusic
 import com.felix.lessplus.service.PlayCache
-import com.felix.lessplus.service.PlayService
 import com.felix.lessplus.utils.CommonUtil
 import com.felix.lessplus.utils.GlideImageLoader
 import com.felix.lessplus.utils.PermissionsUtil

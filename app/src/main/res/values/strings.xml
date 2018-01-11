@@ -14,6 +14,8 @@
     <string name="music_artist">ー&#160;%1$s&#160;ー</string>
     <string name="music_play_start_time">0:00</string>
 
+    <string name="gank_default_name">伏名</string>
+
     <string name="setting_key_mobile_network_play">mobile_network_play</string>
     <string name="setting_key_mobile_network_download">mobile_network_download</string>
     <string name="setting_key_sound_effect">sound_effect</string>

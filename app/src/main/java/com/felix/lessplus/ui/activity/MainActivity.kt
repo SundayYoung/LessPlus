@@ -21,7 +21,6 @@ import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.include_play_bar.*
 import java.util.ArrayList
 import android.support.v4.content.ContextCompat
-import android.support.v4.widget.DrawerLayout
 import android.support.v7.graphics.Palette
 import android.text.format.DateUtils
 import android.widget.SeekBar
@@ -29,9 +28,9 @@ import com.bumptech.glide.request.target.SimpleTarget
 import com.bumptech.glide.request.transition.Transition
 import com.felix.lessplus.model.bean.Music
 import com.felix.lessplus.service.OnPlayerEventListener
+import com.felix.lessplus.ui.fragment.GankFragment
 import com.felix.lessplus.utils.CommonUtil
 import com.felix.lessplus.utils.GlideImageLoader
-import com.felix.lessplus.utils.StatusBarUtil
 import kotlinx.android.synthetic.main.include_play_controller.*
 import org.jetbrains.anko.toast
 
@@ -82,7 +81,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         mTitleList!!.add("Books")
 
         mFragments!!.add(MusicFragment())
-        mFragments!!.add(BaicFragment())
+        mFragments!!.add(GankFragment())
         mFragments!!.add(BaicFragment())
         mFragments!!.add(BaicFragment())
 

@@ -8,7 +8,7 @@ import javax.inject.Singleton
 /**
  * Created by liuhaiyang on 2017/12/2.
  */
-@Component(modules = arrayOf(RemoteModule::class))
+@Component(modules = [(RemoteModule::class)])
 @Singleton
 interface PlayComponent {
     fun inject(playOnlineMusic: PlayOnlineMusic)

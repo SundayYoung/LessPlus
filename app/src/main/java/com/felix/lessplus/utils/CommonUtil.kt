@@ -15,6 +15,7 @@ class CommonUtil {
 
 
         val KEY_TYPE: String = "keyType"
+        val KEY_URL: String = "keyUrl"
 
 
         /**

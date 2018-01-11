@@ -8,11 +8,13 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import com.felix.lessplus.R
 import com.felix.lessplus.ui.activity.MusicListActivity
+import com.felix.lessplus.ui.activity.WebViewActivity
 import com.felix.lessplus.ui.adapter.MusicMultiAdapter
 import com.felix.lessplus.utils.CommonUtil
 import com.felix.lessplus.utils.GlideImageLoader
 import com.felix.lessplus.viewmodel.MusicViewModel
 import com.youth.banner.Banner
+import com.youth.banner.listener.OnBannerClickListener
 import kotlinx.android.synthetic.main.fragment_music.*
 
 /**
@@ -43,6 +45,7 @@ class MusicFragment : BaseFragment(), MusicMultiAdapter.OnItemImgClickListener {
         mAdapter!!.setHeaderView(mHeadView!!)
         vRvList.layoutManager = LinearLayoutManager(mContext)
         vRvList.adapter = mAdapter
+
     }
 
     /**
@@ -58,6 +61,14 @@ class MusicFragment : BaseFragment(), MusicMultiAdapter.OnItemImgClickListener {
             }
 
             mBanner!!.setImages(mImages).setImageLoader(GlideImageLoader()).start()
+            mBanner?.setOnBannerClickListener { position ->
+                val pos = position - 1
+                if (bannerData?.result?.focus?.result!![pos].code != null && bannerData.result?.focus?.result!![pos].code!!.startsWith("http")) {
+                    val intent = Intent(context, WebViewActivity::class.java)
+                    intent.putExtra(CommonUtil.KEY_URL, bannerData.result?.focus?.result!![pos].code)
+                    startActivity(intent)
+                }
+            }
         })
     }
 

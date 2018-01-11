@@ -2,6 +2,7 @@ package com.felix.lessplus.http
 
 
 import com.felix.lessplus.model.bean.BannerResponse
+import com.felix.lessplus.model.bean.GankIoResponse
 import com.felix.lessplus.model.bean.MusicDownLoadInfo
 import com.felix.lessplus.model.bean.MusicListResponse
 import okhttp3.ResponseBody
@@ -17,6 +18,13 @@ interface RestService {
     fun loadData(@Url url: String): Call<BaseServerResponse>
 
     @GET
+    fun loadData(@Url url: String, @QueryMap map: Map<String, Any>): Call<BaseServerResponse>
+
+    @POST
+    fun postData(@Url url: String, @Body body: Any): Call<BaseServerResponse>
+
+
+    @GET
     fun downLoadData(@Url url: String): Call<ResponseBody>
 
     @GET
@@ -28,10 +36,8 @@ interface RestService {
     @GET
     fun loadMusicDownLoadInfo(@Url url: String, @Query("songid") songId: String?): Call<MusicDownLoadInfo>
 
-    @GET
-    fun loadData(@Url url: String, @QueryMap map: Map<String, Any>): Call<BaseServerResponse>
 
-    @POST
-    fun postData(@Url url: String, @Body body: Any): Call<BaseServerResponse>
+    @GET("http://gank.io/api/data/{type}/{pre_page}/{page}")
+    fun loadGankIoData(@Path("type") type: String?, @Path("page") page: Int, @Path("pre_page") pre_page: Int): Call<GankIoResponse>
 
 }

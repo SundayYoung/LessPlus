@@ -43,6 +43,13 @@ class GlideImageLoader : ImageLoader() {
 
         }
 
+        fun displayImageAsBitmap(context: Context, url: String?, imageView: ImageView) {
+            Glide.with(context)
+                    .asBitmap()
+                    .load(url)
+                    .into(imageView)
+        }
+
         fun callBackBitmap(context: Context, url: String?): RequestBuilder<Bitmap> {
 
             return Glide.with(context).asBitmap().load(url)
