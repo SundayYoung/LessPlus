@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/vNvList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <include
+                android:id="@+id/i_head"
+                layout="@layout/layout_movie_head" />
+
+            <View
+                android:id="@+id/vOne"
+                android:layout_width="2dp"
+                android:layout_height="18dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/colorPrimaryDark"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/i_head" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:text="剧情简介"
+                android:textColor="@color/black_10"
+                android:textSize="17sp"
+                app:layout_constraintBottom_toBottomOf="@+id/vOne"
+                app:layout_constraintLeft_toRightOf="@+id/vOne"
+                app:layout_constraintTop_toTopOf="@+id/vOne" />
+
+            <TextView
+                android:id="@+id/vTvAlias"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="7dp"
+                android:padding="12dp"
+                android:textColor="@color/gray_9e"
+                android:textSize="15sp"
+                app:layout_constraintTop_toBottomOf="@+id/vOne" />
+
+            <View
+                android:id="@+id/vTwo"
+                android:layout_width="2dp"
+                android:layout_height="18dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/colorPrimaryDark"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/vTvAlias" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:text="导演 &amp; 演员"
+                android:textColor="@color/black_10"
+                android:textSize="17sp"
+                app:layout_constraintBottom_toBottomOf="@+id/vTwo"
+                app:layout_constraintLeft_toRightOf="@+id/vTwo"
+                app:layout_constraintTop_toTopOf="@+id/vTwo" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/vRlCast"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_constraintTop_toBottomOf="@+id/vTwo"
+                android:layout_marginTop="5dp"/>
+
+        </android.support.constraint.ConstraintLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/vIvTitleBg"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:scaleType="fitXY"
+            android:visibility="gone" />
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/vToolBar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@android:color/transparent"
+            android:theme="@style/ToolbarStyle"
+            app:contentInsetStart="0.0dp"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+
+    </RelativeLayout>
+
+</FrameLayout>

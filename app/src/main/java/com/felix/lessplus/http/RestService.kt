@@ -1,10 +1,7 @@
 package com.felix.lessplus.http
 
 
-import com.felix.lessplus.model.bean.BannerResponse
-import com.felix.lessplus.model.bean.GankIoResponse
-import com.felix.lessplus.model.bean.MusicDownLoadInfo
-import com.felix.lessplus.model.bean.MusicListResponse
+import com.felix.lessplus.model.bean.*
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.http.*
@@ -40,4 +37,9 @@ interface RestService {
     @GET("http://gank.io/api/data/{type}/{pre_page}/{page}")
     fun loadGankIoData(@Path("type") type: String?, @Path("page") page: Int, @Path("pre_page") pre_page: Int): Call<GankIoResponse>
 
+    @GET
+    fun loadHotMovie(@Url url: String): Call<HotMovieResponse>
+
+    @GET("http://api.douban.com/v2/movie/subject/{id}")
+    fun loadMovieDetail(@Path("id") id: String?): Call<MovieDetailResponse>
 }

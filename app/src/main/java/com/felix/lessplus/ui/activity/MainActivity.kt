@@ -29,6 +29,7 @@ import com.bumptech.glide.request.transition.Transition
 import com.felix.lessplus.model.bean.Music
 import com.felix.lessplus.service.OnPlayerEventListener
 import com.felix.lessplus.ui.fragment.GankFragment
+import com.felix.lessplus.ui.fragment.MovieFragment
 import com.felix.lessplus.utils.CommonUtil
 import com.felix.lessplus.utils.GlideImageLoader
 import kotlinx.android.synthetic.main.include_play_controller.*
@@ -82,7 +83,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
 
         mFragments!!.add(MusicFragment())
         mFragments!!.add(GankFragment())
-        mFragments!!.add(BaicFragment())
+        mFragments!!.add(MovieFragment())
         mFragments!!.add(BaicFragment())
 
         val fAdapter = FragmentPagerAdapter(supportFragmentManager, mFragments!!, mTitleList!!)

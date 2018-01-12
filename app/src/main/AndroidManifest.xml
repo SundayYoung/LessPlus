@@ -33,6 +33,7 @@
 
         <activity android:name=".ui.activity.MusicListActivity"/>
         <activity android:name=".ui.activity.WebViewActivity"/>
+        <activity android:name=".ui.activity.MovieDetailActivity"/>
     </application>
 
 </manifest>

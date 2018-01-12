@@ -12,5 +12,6 @@ class UrlConfig {
         var MUSIC_ALBUM: String = "http://5a2a624532152c0012fb9328.mockapi.io/api/homeMusic"
 
         var GANK_BASE: String = "http://gank.io/api/"
+        var HOT_MOVIE: String = "http://api.douban.com/v2/movie/in_theaters"
     }
 }
