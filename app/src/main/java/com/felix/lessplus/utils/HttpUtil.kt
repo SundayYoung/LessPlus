@@ -5,6 +5,7 @@ import android.util.DisplayMetrics
 import android.view.WindowManager
 import com.felix.lessplus.http.UrlConfig
 import com.felix.lessplus.model.bean.MusicDownLoadInfo
+import com.felix.lessplus.model.bean.SplashResponse
 import com.google.gson.Gson
 import java.net.URL
 
@@ -27,6 +28,17 @@ class HttpUtil {
             }
             val data = Gson().fromJson(forecastJsonStr, MusicDownLoadInfo::class.java)
             return if (data.bitrate != null) data else null
+        }
+
+        fun loadSplash(): SplashResponse? {
+            var forecastJsonStr: String? = null
+            try {
+                forecastJsonStr = URL(UrlConfig.SPLASH_URL).readText()
+            } catch (e: Exception) {
+                return null
+            }
+            val data = Gson().fromJson(forecastJsonStr, SplashResponse::class.java)
+            return if (data.images != null) data else null
         }
 
     }

@@ -36,7 +36,7 @@ class RemoteModule {
 
     @Provides @Singleton fun provideRetrofit(gson: Gson, okHttpClient: OkHttpClient): Retrofit =
             Retrofit.Builder()
-                    .baseUrl("http://hiyoung.com")
+                    .baseUrl("http://hiyoung.top")
                     .addConverterFactory(GsonConverterFactory.create(gson))
 //                    .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                     .client(okHttpClient)

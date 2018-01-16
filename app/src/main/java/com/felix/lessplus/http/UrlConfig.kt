@@ -13,5 +13,8 @@ class UrlConfig {
 
         var GANK_BASE: String = "http://gank.io/api/"
         var HOT_MOVIE: String = "http://api.douban.com/v2/movie/in_theaters"
+
+        var SPLASH_BASE: String = "http://cn.bing.com"
+        var SPLASH_URL: String = "http://cn.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1"
     }
 }
