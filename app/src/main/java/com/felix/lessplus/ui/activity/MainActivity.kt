@@ -21,6 +21,7 @@ import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.include_play_bar.*
 import java.util.ArrayList
 import android.support.v4.content.ContextCompat
+import android.support.v4.widget.DrawerLayout
 import android.support.v7.graphics.Palette
 import android.text.format.DateUtils
 import android.widget.SeekBar
@@ -32,6 +33,7 @@ import com.felix.lessplus.ui.fragment.GankFragment
 import com.felix.lessplus.ui.fragment.MovieFragment
 import com.felix.lessplus.utils.CommonUtil
 import com.felix.lessplus.utils.GlideImageLoader
+import com.felix.lessplus.utils.StatusBarUtil
 import kotlinx.android.synthetic.main.include_play_controller.*
 import org.jetbrains.anko.toast
 
@@ -123,13 +125,13 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
 
             override fun onPanelStateChanged(panel: View, previousState: SlidingUpPanelLayout.PanelState, newState: SlidingUpPanelLayout.PanelState) {
                 // || mSlideOffSet == 1.0f
-//                if (newState == SlidingUpPanelLayout.PanelState.EXPANDED) {
-//                    drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
-//                    StatusBarUtil.setStatusBarColor(this@MainActivity, mPlayColor, false)
-//                } else {
-//                    StatusBarUtil.setStatusBarColor(this@MainActivity, ContextCompat.getColor(this@MainActivity, R.color.colorPrimaryDark), false)
-//                    drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
-//                }
+                if (newState == SlidingUpPanelLayout.PanelState.EXPANDED) {
+                    drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
+                    StatusBarUtil.setStatusBarColor(this@MainActivity, mPlayColor, false)
+                } else {
+                    StatusBarUtil.setStatusBarColor(this@MainActivity, ContextCompat.getColor(this@MainActivity, R.color.colorPrimaryDark), false)
+                    drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
+                }
             }
         })
 

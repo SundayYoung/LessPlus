@@ -84,7 +84,7 @@ class GankFragment : BaseFragment() {
             vSRLayout.isRefreshing = false
             mResponseList?.addAll(data?.results!!)
 
-            mResponseList?.let { mAdapter!!.addData(it) }
+            mResponseList?.let { mAdapter!!.setNewData(it) }
             if (data?.results!!.size < 20) {
                 mAdapter!!.loadMoreEnd(false)
             } else {
