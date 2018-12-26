@@ -1,11 +1,10 @@
-package com.weiyankeji.zhongmei.di.module
+package com.felix.lessplus.di.module
 
 import com.felix.lessplus.http.RestService
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
-import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit

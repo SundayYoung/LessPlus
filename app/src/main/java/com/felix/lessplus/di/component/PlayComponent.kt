@@ -1,7 +1,7 @@
-package com.weiyankeji.zhongmei.di.component
+package com.felix.lessplus.di.component
 
 import com.felix.lessplus.executor.PlayOnlineMusic
-import com.weiyankeji.zhongmei.di.module.RemoteModule
+import com.felix.lessplus.di.module.RemoteModule
 import dagger.Component
 import javax.inject.Singleton
 

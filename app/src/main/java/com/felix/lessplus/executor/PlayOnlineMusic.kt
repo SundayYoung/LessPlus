@@ -3,13 +3,13 @@ package com.felix.lessplus.executor
 import android.app.Activity
 import android.text.TextUtils
 import com.felix.lessplus.data.remote.MusicRemoteData
+import com.felix.lessplus.di.component.DaggerPlayComponent
 
 import com.felix.lessplus.model.bean.Music
 import com.felix.lessplus.model.bean.MusicDownLoadInfo
 import com.felix.lessplus.model.bean.OnLineMusic
 import com.felix.lessplus.utils.FileUtils
-import com.weiyankeji.zhongmei.di.component.DaggerPlayComponent
-import com.weiyankeji.zhongmei.di.module.RemoteModule
+import com.felix.lessplus.di.module.RemoteModule
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback

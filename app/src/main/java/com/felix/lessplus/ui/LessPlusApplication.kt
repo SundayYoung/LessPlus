@@ -1,10 +1,10 @@
 package com.felix.lessplus.ui
 
 import android.app.Application
-import com.weiyankeji.zhongmei.di.component.AppComponent
-import com.weiyankeji.zhongmei.di.component.DaggerAppComponent
-import com.weiyankeji.zhongmei.di.module.AppModule
-import com.weiyankeji.zhongmei.di.module.RemoteModule
+import com.felix.lessplus.di.component.AppComponent
+import com.felix.lessplus.di.component.DaggerAppComponent
+import com.felix.lessplus.di.module.AppModule
+import com.felix.lessplus.di.module.RemoteModule
 
 /**
  * Created by liuhaiyang on 2017/12/8.

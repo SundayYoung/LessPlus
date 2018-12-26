@@ -1,4 +1,4 @@
-package com.weiyankeji.zhongmei.di.module
+package com.felix.lessplus.di.module
 
 import android.content.Context
 import com.felix.lessplus.ui.LessPlusApplication
